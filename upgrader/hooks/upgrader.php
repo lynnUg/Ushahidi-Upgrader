@@ -39,22 +39,27 @@ class upgrader{
 		$view->version_in_config = Kohana::config('version.ushahidi_version');
 
 		// Check if we are upgrading anything
-       
+		$dance=false;
+		$view->complete=false;
+	
+		
+       $newbie=dirname(dirname(dirname(dirname(__FILE__))));
 		if (isset($_POST['versionnotifier_update']))
 		{
 			
-	   
-     		 $newbie=dirname(dirname(dirname(dirname(__FILE__))));
-			 $move_on=$this->_process_sql($newbie."/plugins/upgrader/sql_upgrade/");
-			 if($move_on)
-			 {
-			   $this->copy_recursively($newbie."/plugins/upgrader/Ushahidi_New",$newbie);
-		     }
-		  
-		     
+			$this->_process_sql($newbie."/plugins/upgrader/sql_upgrade/");
+			 $view->complete=true;
+			 $dance=true;
+			 sleep(60);
+             flush();
+			     
 			
 		}
-
+		if($dance)
+		{
+          $this->copy_recursively($newbie."/plugins/upgrader/Ushahidi_New",$newbie);
+	    }
+	   
 		
 		if($view->version_in_config < "2.1")
 		{

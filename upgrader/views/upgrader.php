@@ -4,7 +4,7 @@
 <?php
 	echo form::open(NULL, array('id' => 'versionnotifier_update', 'name' => 'versionnotifier_update', 'style' => 'float:left;padding-left:15px;'));
 	echo form::hidden('versionnotifier_update','1');
-	echo form::submit('submit', 'Upgrade from version '.$version_in_config.' to '.($version_in_config+0.1).'.Please ensure all your ushahidi files are writable');
+	echo form::submit('submit', 'Upgrade from version '.$version_in_config.' to '.($version_in_config+0.1));
 	echo form::close();
 ?>
 	
